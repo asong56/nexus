@@ -2,6 +2,8 @@
 
 *Such a bad name ...*
 
+(used by myself)
+
 Overall, this is a chrome extension that has the ability of these (and thx to these projects):
 - Omni
 - LeechBlock NG
