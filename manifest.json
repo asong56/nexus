@@ -1,0 +1,102 @@
+{
+  "manifest_version": 3,
+  "name": "Nexus",
+  "version": "1.0.0",
+  "description": "Unified browser extension: command palette, focus guard, WebRTC control, UA switcher, search filter",
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "bookmarks",
+    "browsingData",
+    "history",
+    "scripting",
+    "search",
+    "storage",
+    "unlimitedStorage",
+    "alarms",
+    "webNavigation",
+    "contextMenus",
+    "offscreen",
+    "privacy",
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess",
+    "proxy"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_icon": {
+      "16": "assets/icon16.png",
+      "48": "assets/icon48.png",
+      "128": "assets/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "assets/icon16.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
+  },
+  "commands": {
+    "open-nexus": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+K",
+        "mac": "Command+Shift+K"
+      },
+      "description": "Open Nexus command palette"
+    }
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "content/overlay.js"
+      ],
+      "css": [
+        "content/overlay.css"
+      ],
+      "matches": [
+        "<all_urls>"
+      ],
+      "run_at": "document_end"
+    },
+    {
+      "js": [
+        "content/guard.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "options_ui": {
+    "page": "pages/options.html",
+    "open_in_tab": true
+  },
+  "web_accessible_resources": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "resources": [
+        "newtab.html",
+        "pages/*",
+        "inject/*",
+        "assets/*",
+        "content/overlay.css",
+        "content/overlay-inner.html",
+        "newtab.js",
+        "content/overlay-inner.js",
+        "pages/options.js",
+        "pages/password.js",
+        "pages/lockdown.js",
+        "pages/blocked.js",
+        "pages/delayed.js"
+      ]
+    }
+  ]
+}
